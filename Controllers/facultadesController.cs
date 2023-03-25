@@ -2,35 +2,30 @@
 using Microsoft.AspNetCore.Mvc;
 using practicaWEbEquipos.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace practicaWEbEquipos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EquiposController : ControllerBase
+    public class facultadesController : ControllerBase
     {
         private readonly equiposContext _equiposContexto;
 
-        public EquiposController(equiposContext equiposContexto)
+        public facultadesController(equiposContext equiposContexto)
         {
-           _equiposContexto = equiposContexto;
-
+            _equiposContexto = equiposContexto;
 
         }
         [HttpGet]
         [Route("GetAll")]
         public IActionResult Get()
         {
-            List<equipos> listadoEquipo = (from e in _equiposContexto.equipos
-                                           select e).ToList();
-            if (listadoEquipo.Count() == 0)
+            List<facultades> listadoFacultades = (from fac in _equiposContexto.facultades
+                                          select fac).ToList();
+            if (listadoFacultades.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(listadoEquipo);
+            return Ok(listadoFacultades);
         }
-
     }
-
-
 }

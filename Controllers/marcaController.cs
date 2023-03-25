@@ -7,30 +7,26 @@ namespace practicaWEbEquipos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EquiposController : ControllerBase
+    public class marcaController : ControllerBase
     {
         private readonly equiposContext _equiposContexto;
 
-        public EquiposController(equiposContext equiposContexto)
+        public marcaController(equiposContext equiposContexto)
         {
-           _equiposContexto = equiposContexto;
-
+            _equiposContexto = equiposContexto;
 
         }
         [HttpGet]
         [Route("GetAll")]
         public IActionResult Get()
         {
-            List<equipos> listadoEquipo = (from e in _equiposContexto.equipos
-                                           select e).ToList();
-            if (listadoEquipo.Count() == 0)
+            List<marcas> listadoMarcas = (from m in _equiposContexto.marcas
+                                           select m).ToList();
+            if (listadoMarcas.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(listadoEquipo);
+            return Ok(listadoMarcas);
         }
-
     }
-
-
 }

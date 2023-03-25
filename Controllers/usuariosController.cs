@@ -2,18 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using practicaWEbEquipos.Models;
 using Microsoft.EntityFrameworkCore;
-
 namespace practicaWEbEquipos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EquiposController : ControllerBase
+    public class usuariosController : ControllerBase
     {
         private readonly equiposContext _equiposContexto;
 
-        public EquiposController(equiposContext equiposContexto)
+        public usuariosController(equiposContext equiposContexto)
         {
-           _equiposContexto = equiposContexto;
+            _equiposContexto = equiposContexto;
 
 
         }
@@ -21,16 +20,13 @@ namespace practicaWEbEquipos.Controllers
         [Route("GetAll")]
         public IActionResult Get()
         {
-            List<equipos> listadoEquipo = (from e in _equiposContexto.equipos
-                                           select e).ToList();
-            if (listadoEquipo.Count() == 0)
+            List<usuarios> listadoUsuarios = (from lu in _equiposContexto.usuarios
+                                          select lu).ToList();
+            if (listadoUsuarios.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(listadoEquipo);
+            return Ok(listadoUsuarios);
         }
-
     }
-
-
 }

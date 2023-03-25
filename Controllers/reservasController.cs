@@ -7,13 +7,13 @@ namespace practicaWEbEquipos.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EquiposController : ControllerBase
+    public class reservasController : ControllerBase
     {
         private readonly equiposContext _equiposContexto;
 
-        public EquiposController(equiposContext equiposContexto)
+        public reservasController(equiposContext equiposContexto)
         {
-           _equiposContexto = equiposContexto;
+            _equiposContexto = equiposContexto;
 
 
         }
@@ -21,16 +21,13 @@ namespace practicaWEbEquipos.Controllers
         [Route("GetAll")]
         public IActionResult Get()
         {
-            List<equipos> listadoEquipo = (from e in _equiposContexto.equipos
-                                           select e).ToList();
-            if (listadoEquipo.Count() == 0)
+            List<reservas> listadoRes = (from res in _equiposContexto.reservas
+                                          select res).ToList();
+            if (listadoRes.Count() == 0)
             {
                 return NotFound();
             }
-            return Ok(listadoEquipo);
+            return Ok(listadoRes);
         }
-
     }
-
-
 }
