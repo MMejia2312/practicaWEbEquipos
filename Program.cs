@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using practicaWEbEquipos.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +27,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+
+
 
 app.UseHttpsRedirection();
 

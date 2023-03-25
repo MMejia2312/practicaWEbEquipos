@@ -10,4 +10,6 @@ namespace practicaWEbEquipos.Models
         }
         public DbSet<equipos> equipos { get; set; }
     }
+
+
 }

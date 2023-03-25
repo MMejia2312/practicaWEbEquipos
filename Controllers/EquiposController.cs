@@ -9,11 +9,28 @@ namespace practicaWEbEquipos.Controllers
     [ApiController]
     public class EquiposController : ControllerBase
     {
-        private readonly equiposContext equiposContexto;
+        private readonly equiposContext _equiposContexto;
 
         public EquiposController(equiposContext equiposContexto)
         {
-            this.equiposContexto = equiposContexto;
-        }       
+           _equiposContexto = equiposContexto;
+
+
+        }
+        [HttpGet]
+        [Route("GetAll")]
+        public IActionResult Get()
+        {
+            List<equipos> listadoEquipo = (from e in _equiposContexto.equipos
+                                           select e).ToList();
+            if (listadoEquipo.Count() == 0)
+            {
+                return NotFound();
+            }
+            return Ok(listadoEquipo);
+        }
+
     }
+
+
 }
