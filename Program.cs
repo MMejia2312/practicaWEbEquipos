@@ -1,8 +1,18 @@
+using Microsoft.EntityFrameworkCore;
+using practicaWEbEquipos.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+
+// inyeccion por dependencias del string de conexion al contexto
+builder.Services.AddDbContext<equiposContext>(options =>
+        options.UseSqlServer(
+         builder.Configuration.GetConnectionString("EquiposConnetion")   )
+);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
