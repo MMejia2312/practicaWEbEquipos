@@ -19,6 +19,7 @@ namespace practicaWEbEquipos.Controllers
         }
         [HttpGet]
         [Route("GetAll")]
+        [Keyless]
         public IActionResult Get()
         {
             List<equipos> listadoEquipo = (from e in _equiposContexto.equipos
